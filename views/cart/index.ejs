@@ -1,0 +1,40 @@
+<% layout('/layout/boilerplate') -%>
+
+<section>
+    <div class="row">
+        <div class="col-lg-8">
+            <% for( let item of cart ) { %>
+                <div class="card mb-3" style="max-width: 500px;">
+                    <div class="row g-0">
+                      <div class="col-md-4 col-4">
+                        <img src="<%= item.productId.image %>" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8 col-8">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= item.productId.name %></h5>
+                          <p class="card-text"><%= item.productId.desc %></div>
+                        <div>
+                            <span class="btn btn-sm bg-primary text-white">-</span>
+                            <span><%= item.quantity  %></span>
+                            <form class="d-inline" action="/user/<%= item.productId._id %>/cart/add" method="post">
+                                <button class="btn btn-sm bg-primary text-white">+</button>
+                            </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            <% } %>
+        </div>
+
+        <div class="col-lg-4">
+            <ul class="list-group">
+
+                <% for( let item of cart ) { %>
+                    <li class="list-group-item "> <span class="fw-bold"><%= item.productId.name %></span> -  $ <%= item.productId.price %> * <%= item.quantity %></li>
+                <% } %>
+
+                <li class="list-group-item "> <span class="fw-bold">Totol - $ 20000</span></li>
+              </ul>
+        </div>
+    </div>
+</section>
